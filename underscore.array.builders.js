@@ -196,6 +196,31 @@
           }));
         },[]);
       },_.map(arguments[0],function(i){return [i];}));
+    },
+
+    permutations: function(){
+      
+    },
+
+    permutationsRepeated: function(){
+      var arr = slice.call(arguments);
+      var rounds = arr.length;
+      var results = [];
+
+      var combos = function(roundsToGo, playedSoFar) {
+        if( roundsToGo === 0 ){
+          results.push( playedSoFar );
+          return;
+        }
+
+        for( var i = 0; i < plays.length; i++ ){
+          var currentPlay = plays[i];
+          combos( roundsToGo-1, playedSoFar.concat(currentPlay) );
+        }
+      }
+      combos( arr.length, [] );
+
+      return results;
     }
 
   });
